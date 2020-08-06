@@ -7,6 +7,8 @@ export default class Logic {
     this.area = document.querySelector('.area');
     this.divAllTask = document.querySelector('.allTask');
     this.divPinTasks = document.querySelector('.pinTasks');
+    this.pinnedSpan = document.createElement('span');
+    this.pinnedSpan.textContent = 'No pinned tasks';
     this.tasksArr = [];
   }
 
@@ -27,6 +29,7 @@ export default class Logic {
       this.sorting();
     });
     this.listnerPin();
+    this.sorting();
   }
 
   listnerPin() {
@@ -60,6 +63,15 @@ export default class Logic {
     });
     if (this.divAllTask.innerHTML === '') {
       this.divAllTask.textContent = 'No tasks found';
+    }
+    // console.log(this.divPinTasks.innerHTM !== '<span class="noPin">No pinned tasks</span>');
+    if (this.divPinTasks.innerHTML !== '<span class="noPin">No pinned tasks</span>') {
+      if (this.divPinTasks.innerHTML === '') {
+        // this.pinnedSpan.textContent = 'No pinned tasks';
+        this.divPinTasks.innerHTML = '<span class="noPin">No pinned tasks</span>';
+      } else {
+        document.querySelector('.noPin').remove();
+      }
     }
   }
 }
